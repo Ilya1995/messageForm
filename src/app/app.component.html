@@ -1,0 +1,72 @@
+<form class="container" (ngSubmit)="onSubmit()" *ngIf="showForm; else table">
+    <div class="card-panel grey lighten-5 z-depth-1">
+      <div class="header">
+        <h5>Напишите нам</h5>
+      </div>
+      <div class="column">
+        <div class="input-field row s6">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="icon_prefix" type="text" [(ngModel)]="form.name" name="name">
+          <label for="icon_prefix">Ваше имя</label>
+          <span class="helper-text">Имя должно содержать больше 3 символов</span>
+        </div>
+        <div class="input-field row s6">
+          <i class="material-icons prefix">email</i>
+          <input id="email" type="email" [(ngModel)]="form.email" name="email">
+          <label for="email">Ваш Email</label>
+          <span class="helper-text" >Пример: ilya@mail.ru</span>
+        </div>
+        <div class="input-field row s6">
+          <i class="material-icons prefix">phone</i>
+          <input id="icon_telephone" type="tel" [textMask]="{mask: maskPhone}" [(ngModel)]="form.phone" name="phone">
+          <label for="icon_telephone">Ваш телефон</label>
+          <span class="helper-text">Пример: (910) 221-6828</span>
+        </div>
+        <div class="input-field row s6">
+          <i class="material-icons prefix">message</i>
+          <select [(ngModel)]="form.selectedTheme" name="selectTheme" class="browser-default">
+            <option *ngFor="let theme of themeMessage" [ngValue]="theme">{{theme}}</option>
+          </select>
+          <label class="select-label">Тема письма</label>
+        </div>
+        <div class="input-field row s6">
+          <i class="material-icons prefix">mode_edit</i>
+          <textarea id="textarea2" class="materialize-textarea" [(ngModel)]="form.text" name="text"></textarea>
+          <label for="textarea2">Ваше сообщение</label>
+          <span class="helper-text">Текст сообщения должен быть больше 10 символов</span>
+        </div>
+
+        <re-captcha (resolved)="captcha=true" siteKey={{siteKey}}></re-captcha>
+
+        <button class="btn waves-effect waves-light" type="submit" [disabled]="!valideForm()" name="action">Отправить письмо
+          <i class="material-icons right">send</i>
+        </button>
+
+      </div>
+    </div>
+</form>
+
+<ng-template #table>
+  <table class="container table-width">
+    <thead>
+      <tr>
+        <th>Имя</th>
+        <th>Email</th>
+        <th>Номер телефона</th>
+        <th>Тема письма</th>
+        <th>Текст сообщения</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <tr *ngFor="let message of messages">
+        <td>{{message.name}}</td>
+        <td>{{message.email}}</td>
+        <td>{{message.phone}}</td>
+        <td>{{message.selectedTheme}}</td>
+        <td>{{message.text}}</td>
+      </tr>
+    </tbody>
+    <button class="btn waves-effect waves-light" (click)="back()" name="action">Вернуться</button>
+  </table>
+</ng-template>

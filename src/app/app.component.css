@@ -1,0 +1,38 @@
+.container {
+  max-width: 650px;
+  padding: 3rem;
+}
+
+.table-width {
+  max-width: 850px;
+}
+
+.btn {
+  margin-top: 3rem;
+}
+
+.header {
+  margin: 3rem auto;
+}
+
+.input-field {
+  margin-top: 3rem;
+}
+
+.header h5 {
+  padding:10px 45px;
+  background-color: #26a69a;
+  color: rgb(255, 255, 255)
+}
+
+.select-label {
+    position: absolute;
+    top: -26px;
+    font-size: .8rem;
+}
+
+.browser-default {
+  margin-left: 3rem;
+  width: calc(100% - 3rem);
+}
+    
